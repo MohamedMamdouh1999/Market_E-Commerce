@@ -14,14 +14,12 @@ export class CartComponent {
   success:boolean = false
   loading:boolean = false
   ngOnInit(): void {
-    this.loading = true
     this.getCarts()
   }
   getCarts(){
     if("cart" in localStorage){
       this.carts = JSON.parse(localStorage.getItem("cart")!)
       this.getTotal()
-      this.loading = false
     }
   }
   clearCart(){

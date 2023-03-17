@@ -1,0 +1,17 @@
+<div class="product">
+  <div class="details" [routerLink]="['/details', data.id]">
+    <img [src]="data.image" [alt]="data.title">
+    <div class="body">
+      <h4>{{data.title}}</h4>
+      <p>{{data.description}}</p>
+    </div>
+  </div>
+  <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
+    <div *ngIf="isAdd" class="w-75 d-flex justify-content-start align-items-center">
+      <input type="number" min="0" [max]="data.rating.count" class="form-control w-75" [(ngModel)]="amount">
+      <button (click)="add()" class="btn btn-sm ms-1 btn-primary">Add</button>
+    </div>
+    <button *ngIf="!isAdd" (click)="isAdd = true" class="btn btn-success">Add</button>
+    <span>${{data.price}}</span>
+  </div>
+</div>

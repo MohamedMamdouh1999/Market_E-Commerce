@@ -1,0 +1,53 @@
+<div class="py-5 text-center" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<section class="py-4 overflow-auto" *ngIf="!loading">
+  <h1 class="text-danger">Shopping Cart</h1>
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="lead">You have <span class="text-danger">{{carts.length}}</span> item in your cart</div>
+    <button class="btn btn-outline-danger ms-1" (click)="clearCart()">Clear Shopping Cart</button>
+  </div>
+  <table class="table table-striped text-center mt-3">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cart of carts; let i = index">
+        <td><img class="rounded-circle" [src]="cart.product.image" [alt]="cart.product.title"></td>
+        <td>{{cart.product.title}}</td>
+        <td>${{(cart.product.price).toFixed(2)}}</td>
+        <td>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-dark" (click)="addAmount(i)">+</button>
+            <input class="form-control text-center mx-1" type="number" min="1" (change)="detectChanges()" [(ngModel)]="cart.quantity">
+            <button class="btn btn-dark" (click)="minsAmount(i)">-</button>
+          </div>
+        </td>
+        <td>${{(cart.product.price * cart.quantity).toFixed(2)}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total: ${{(total).toFixed(2)}}</td>
+        <td>
+          <button class="btn btn-success" (click)="addCart()">Order Now</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="alert alert-success text-center" *ngIf="success" role="alert"><strong>Well done! </strong>your order is successfully send</div>
+</section>

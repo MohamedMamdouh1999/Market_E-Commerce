@@ -1,0 +1,23 @@
+<div class="py-5 text-center" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<div class="row py-5 gy-3" *ngIf="!loading">
+  <div class="col-md-4 px-2">
+    <img class="w-100" [src]="productDetails.image" [alt]="productDetails.title">
+  </div>
+  <div class="col-md-8">
+    <h1>{{productDetails.title}}</h1>
+    <p class="ps-3">{{productDetails.description}}</p>
+    <div class="row ps-3">
+      <div class="col-5 h5 py-2">Category:</div>
+      <div class="col-7 py-2">{{productDetails.category}}</div>
+      <div class="col-5 h5 py-2">Price:</div>
+      <div class="col-7 py-2">${{productDetails.price}}</div>
+      <div class="col-5 h5 py-2">Rating:</div>
+      <div class="col-7 py-2">{{productDetails.rating.rate}}</div>
+      <div class="col-5 h5 py-2">Count:</div>
+      <div class="col-7 py-2">{{productDetails.rating.count}}</div>
+    </div>
+  </div>
+</div>
+
